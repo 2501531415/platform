@@ -1,30 +1,33 @@
 <template>
   <el-breadcrumb class="breadcrumb-container" separator=">">
-    <el-breadcrumb-item v-for="item in list" :key="item.path">
-      {{ item.meta.title }}
+    <el-breadcrumb-item v-for="item in breadcrumb" :key="item.path">
+      {{ item.name }}
     </el-breadcrumb-item>
   </el-breadcrumb>
 </template>
 
 <script>
+  import {mapGetters,mapActions} from 'vuex'
   export default {
-    name: 'VabBreadcrumb',
-    data() {
-      return {
-        list: this.getBreadcrumb(),
-      }
+    name: 'Breadcrumb',
+    computed:{
+      ...mapGetters({
+        routes:"permission/getViewRoutes",
+        breadcrumb:"tabsView/getBreadcrumb"
+      }),
     },
     watch: {
       $route() {
-        this.list = this.getBreadcrumb()
+        if(this.routes){
+          this.setBreadcrumb({routes:this.routes,path:this.$route.path})
+        }
       },
     },
     methods: {
-      getBreadcrumb() {
-        return this.$route.matched.filter(
-          (item) => item.name && item.meta.title
-        )
-      },
+      ...mapActions({
+        'setBreadcrumb':'tabsView/setBreadcrumb'
+      })
+      
     },
   }
 </script>

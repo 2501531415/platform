@@ -10,7 +10,7 @@
       <el-tab-pane
         v-for="item in visitedRoutes"
         :key="item.path"
-        :label="item.meta.title"
+        :label="item.name"
         :name="item.path"
         :closable="!isAffix(item)"
       ></el-tab-pane>

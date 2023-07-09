@@ -2,11 +2,7 @@ import Vue from 'vue'
 import { initGlobalState } from 'qiankun';
 
 const initState = Vue.observable({
-  itemId:27,
-  user:{
-    userName:'zwm',
-    token:'03779958-3c06-46e9-bf87-8021bb31760f'
-  }
+  menu:[]
 })
 
 // 初始化 state

@@ -1,7 +1,7 @@
 <template>
   <el-submenu
     ref="subMenu"
-    :index="handlePath(item.path)"
+    :index="item.path"
     :popper-append-to-body="false"
   >
     <template slot="title">
@@ -31,21 +31,6 @@
           return null
         },
       },
-      fullPath: {
-        type: String,
-        default: '',
-      },
-    },
-    methods: {
-      handlePath(routePath) {
-        if (isExternal(routePath)) {
-          return routePath
-        }
-        if (isExternal(this.fullPath)) {
-          return this.fullPath
-        }
-        return path.resolve(this.fullPath, routePath)
-      },
-    },
+    }
   }
 </script>

@@ -3,14 +3,12 @@
     :is="menuComponent"
     v-if="!item.hidden"
     :item="item"
-    :full-path="fullPath"
     :route-children="routeChildren"
   >
     <template v-if="item.children && item.children.length">
       <side-bar-item
         v-for="route in item.children"
         :key="route.path"
-        :full-path="handlePath(route.path)"
         :item="route"
       />
     </template>
@@ -30,11 +28,7 @@
       item: {
         type: Object,
         required: true,
-      },
-      fullPath: {
-        type: String,
-        default: '',
-      },
+      }
     },
     components:{
       Submenu,
@@ -77,22 +71,12 @@
         if (showChildren.length === 0) {
           this.routeChildren = {
             ...parent,
-            path: '',
             notShowChildren: true,
           }
           return true
         }
         return false
-      },
-      handlePath(routePath) {
-        if (isExternal(routePath)) {
-          return routePath
-        }
-        if (isExternal(this.fullPath)) {
-          return this.fullPath
-        }
-        return path.resolve(this.fullPath, routePath)
-      },
+      }
     },
   }
 </script>

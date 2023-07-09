@@ -3,7 +3,6 @@ import ElementUI from 'element-ui';
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import {registerMicro} from './microApp'
 
 //全局样式
 import '@/assets/styles/global.scss'
@@ -17,9 +16,6 @@ import './permission'
 Vue.use(ElementUI)
 
 Vue.config.productionTip = false
-
-// 执行qiankun
-registerMicro()
 
 new Vue({
   router,

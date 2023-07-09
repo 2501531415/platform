@@ -1,6 +1,6 @@
 <template>
   <el-scrollbar class="side-bar-container" :class="{ 'is-collapse': collapse }">
-    <!-- <vab-logo /> -->
+    <Logo />
     <el-menu
       :background-color="variables['menu-background']"
       :text-color="variables['menu-color']"
@@ -14,7 +14,6 @@
       <template v-for="route in routes">
         <side-bar-item
           :key="route.path"
-          :full-path="route.path"
           :item="route"
         />
       </template>
@@ -26,46 +25,23 @@ import variables from "@/assets/styles/variables.module.scss";
 import { mapGetters } from "vuex";
 import { uniqueOpened } from "@/setting";
 import SideBarItem from "./components/SideBarItem";
+import Logo from '@/layouts/components/Logo'
 
 export default {
   name: "SideBar",
   data() {
     return {
-      uniqueOpened,
-      routes: [{
-        path: "/vue2",
-        name: "微应用",
-        meta: {
-          title: "微应用",
-          icon: "el-icon-menu",
-        },
-        children: [
-          {
-            path: "test1",
-            name: "测试微应用1",
-            meta: {
-              title: "测试1",
-              icon: "el-icon-eleme",
-            },
-          },
-          {
-            path: "project/test",
-            name: "测试微应用12",
-            meta: {
-              title: "测试2",
-              icon: "el-icon-eleme",
-            },
-          },
-        ],
-      }],
+      uniqueOpened
     };
   },
   components: {
     SideBarItem,
+    Logo
   },
   computed: {
-    ...mapGetters("setting", {
-      collapse: "getCollapse",
+    ...mapGetters({
+      collapse: "setting/getCollapse",
+      routes:"permission/getViewRoutes"
     }),
     activeMenu() {
       const route = this.$route;
@@ -78,7 +54,7 @@ export default {
     variables() {
       return variables;
     },
-  },
+  }
 };
 </script>
 <style lang="scss" scoped>
