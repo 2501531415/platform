@@ -5,11 +5,14 @@ import vueRouter from 'vue-router'
 Vue.use(vueRouter)
 
 export const routes = [
-
+  {
+    path:"/login",
+    name:"登录",
+    component:()=>import('@/view/login')
+  }
 ]
 
 const router = new vueRouter({
-  base:'/',
   routes
 })
 

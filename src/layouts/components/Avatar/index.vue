@@ -20,9 +20,13 @@
 </template>
 
 <script>
+  import { mapActions } from 'vuex'
   export default {
     name: 'Avatar',
     methods: {
+      ...mapActions({
+        logoutAction:'user/logout'
+      }),
       handleCommand(command) {
         switch (command) {
           case 'logout':
@@ -52,7 +56,8 @@
         this.$router.push('/personalCenter/personalCenter')
       },
       logout() {
-        
+        this.logoutAction()
+        this.$router.push('/login')
       },
     },
   }
