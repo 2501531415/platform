@@ -1,16 +1,22 @@
 import {findRoute,findBreadcrumb,findRouteInfo} from '@/utils/route'
 const state = () => ({
+  firstRoutePath:'/system/menu',
   visitedRoutes: [],
   breadcrumb:[]
 })
 const getters = {
+  firstRoutePath: (state) => state.firstRoutePath,
   visitedRoutes: (state) => state.visitedRoutes,
   getBreadcrumb: (state) => state.breadcrumb
 }
 const mutations = {
+  setFirstRoutePath(state, payload) {
+    state.firstRoutePath = payload
+  },
   //面包屑
   setBreadcrumb(state, payload) {
     const matched = findRoute(payload.routes, payload.path)
+    if(!matched)return;
     const breadcrumb = findBreadcrumb([matched], payload.path).filter(item => {
       return item.children || item.path == payload.path
     })

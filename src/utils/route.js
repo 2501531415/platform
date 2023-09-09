@@ -91,3 +91,18 @@ export function findRouteInfo(routes, path) {
 	})
 	return info
 }
+
+// 获取路由菜单的第一个菜单
+export function findFirstRoute(routes){
+	let firstRoute;
+	routes.forEach((route,index)=>{
+		if(index == 0){
+			if(route.children && route.children.length > 0){
+				firstRoute = findFirstRoute(route.children)
+			}else{
+				firstRoute = route
+			}
+		}
+	})
+	return firstRoute
+}

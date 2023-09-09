@@ -1,14 +1,19 @@
 <template>
   <div class="logo">
     <img src="~@/assets/image/logo.png" alt="">
-		<span class="logo-title">QianKun Admin</span>
+		<span class="logo-title" v-if="!isCollapse">QianKun Admin</span>
   </div>
 </template>
 
 <script>
+	import {mapGetters} from 'vuex'
 	export default {
 		name:"Logo",
-		
+		computed:{
+			...mapGetters({
+				isCollapse:'setting/getCollapse'
+			})
+		},
 	}
 </script>
 
@@ -17,9 +22,10 @@
 	display: flex;
 	align-items: center;
 	height: 48px;
-  padding: 10px 4px 10px 10px;
+  padding: 10px;
 	transition: all .2s ease;
   cursor: pointer;
+	margin-left: 6px;
 	img{
 		width: 32px;
     height: 32px;

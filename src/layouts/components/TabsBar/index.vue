@@ -57,7 +57,8 @@
 
     computed: {
       ...mapGetters({
-        visitedRoutes: 'tabsView/visitedRoutes'
+        visitedRoutes: 'tabsView/visitedRoutes',
+        firstPath: 'tabsView/firstRoutePath'
       }),
     },
     watch: {
@@ -207,6 +208,10 @@
         if (latestView) {
           this.$router.push(latestView)
         } else {
+          if(this.$route.path == this.firstPath){
+            this.addtabs()
+            return;
+          };
           this.$router.push('/')
         }
       },

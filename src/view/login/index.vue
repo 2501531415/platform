@@ -153,7 +153,7 @@
           if (valid) {
             this.loading = true
             this.setToken('88888-66666')
-            this.$router.push('/system/menu')
+            this.$router.push('/')
           } else {
             return false
           }
