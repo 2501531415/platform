@@ -1,8 +1,9 @@
- import router from '@/router'
+import router from '@/router'
 import store from './store'
 import nprogress from '@/lib/nprogress'
 import {registerMicro} from './microApp'
-import {findFirstRoute} from '@/utils/route'
+import {findFirstRoute,findRoute} from '@/utils/route'
+import {errorPath} from '@/setting'
 
 router.beforeResolve(async (to,form,next)=>{
   const whileList = ['/login']
@@ -27,13 +28,23 @@ router.beforeResolve(async (to,form,next)=>{
         path:firstRoute.path,
         name:firstRoute.name,
         meta:firstRoute.meta,
-      }])
+      },
+      ])
 
       // 执行qiankun
       registerMicro(microApp)
-      return next({path:to.path})
+      return next({path:to.path})    
     }
-    next()
+    const matched = findRoute(routes, to.path)
+    // 已经登录 跳转到系统初始页
+    if(to.path == '/login'){
+      next({path:'/'})
+    }else if(!matched && to.path != errorPath){
+      // 处理404页面
+      next(errorPath)
+    }else{
+      next()
+    }
   }else{
     if(whileList.includes(to.path)){
       next()

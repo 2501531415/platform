@@ -6,6 +6,8 @@ const setting = {
 
   storage:'localStorage',
 
+  errorPath:'/404'
+
 }
 
 module.exports = setting

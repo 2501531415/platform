@@ -2,7 +2,7 @@
   <el-dropdown @command="handleCommand">
     <span class="avatar-dropdown">
       <!--<el-avatar class="user-avatar" :src="avatar"></el-avatar>-->
-      <img class="user-avatar" src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg" alt="" />
+      <img class="user-avatar" src="~@/assets/image/logo.png" alt="" />
       <div class="user-name">
         管理员
         <i class="el-icon-arrow-down el-icon--right"></i>

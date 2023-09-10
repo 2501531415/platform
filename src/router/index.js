@@ -1,18 +1,23 @@
 import Vue from 'vue'
 import vueRouter from 'vue-router'
+import {errorPath} from '@/setting'
 // import Layout from '@/layouts'
 
 Vue.use(vueRouter)
 
 export const routes = [
-  // {
-  //   path:'/',
-  //   redirect:'/system/menu'
-  // },
   {
     path:"/login",
     name:"登录",
     component:()=>import('@/view/login')
+  },
+  {
+    path:errorPath,
+    name:'404',
+    component:()=>import('@/view/error/404.vue'),
+    meta:{
+      title:'404'
+    },
   }
 ]
 

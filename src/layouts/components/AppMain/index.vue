@@ -2,8 +2,8 @@
   <div class="app-main-container" v-if="showView">
     <transition mode="out-in" name="fade-transform">
       <keep-alive>
-        <!-- <router-view :key="key" class="app-main-height" /> -->
-        <div id="subapp-viewport"></div>
+        <div id="subapp-viewport" v-if="isMicro"></div>
+        <router-view :key="key" class="base-viewport" v-else/>
       </keep-alive>
     </transition>
   </div>
@@ -21,6 +21,9 @@
     computed:{
       key(){
         return this.$route.path
+      },
+      isMicro(){
+        return this.$route.meta.isMicro
       }
     },
     methods:{
@@ -33,9 +36,10 @@
   .app-main-container {
     position: relative;
     width: 100%;
-    overflow-y: auto;
-    #subapp-viewport {
-      height: $base-app-main-height;
+    height: $base-app-main-height;
+    #subapp-viewport,.base-viewport{
+      height: 100%;
+      overflow-y: auto;
     }
 
     .footer-copyright {

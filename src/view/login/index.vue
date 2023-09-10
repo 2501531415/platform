@@ -154,6 +154,11 @@
             this.loading = true
             this.setToken('88888-66666')
             this.$router.push('/')
+            this.$notify({
+              title:'登录成功',
+              message:'管理员，欢迎回来~',
+              type:'success'
+            })
           } else {
             return false
           }

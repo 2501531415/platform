@@ -1,4 +1,5 @@
 import {findRoute,findBreadcrumb,findRouteInfo} from '@/utils/route'
+import {errorPath} from '@/setting'
 const state = () => ({
   firstRoutePath:'/system/menu',
   visitedRoutes: [],
@@ -16,6 +17,11 @@ const mutations = {
   //面包屑
   setBreadcrumb(state, payload) {
     const matched = findRoute(payload.routes, payload.path)
+    // 处理404页面
+    if(payload.path == errorPath){
+      state.breadcrumb = [{name:'404',path:errorPath}]
+      return;
+    }
     if(!matched)return;
     const breadcrumb = findBreadcrumb([matched], payload.path).filter(item => {
       return item.children || item.path == payload.path
@@ -73,6 +79,7 @@ const actions = {
     commit
   },payload) {
     const route = findRouteInfo(payload.routes,payload.path)
+    if(!route)return;
     commit('addVisitedRoute', route)
   },
   addVisitedRoute({
