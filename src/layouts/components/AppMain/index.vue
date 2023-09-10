@@ -2,8 +2,8 @@
   <div class="app-main-container" v-if="showView">
     <transition mode="out-in" name="fade-transform">
       <keep-alive>
-        <div id="subapp-viewport" v-if="isMicro"></div>
-        <router-view :key="key" class="base-viewport" v-else/>
+        <div id="subapp-viewport"></div>
+        <router-view :key="key" class="base-viewport"/>
       </keep-alive>
     </transition>
   </div>
@@ -22,9 +22,6 @@
       key(){
         return this.$route.path
       },
-      isMicro(){
-        return this.$route.meta.isMicro
-      }
     },
     methods:{
 
