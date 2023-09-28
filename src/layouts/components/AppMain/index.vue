@@ -3,7 +3,7 @@
     <transition mode="out-in" name="fade-transform">
       <keep-alive>
         <div id="subapp-viewport"></div>
-        <router-view :key="key" class="base-viewport"/>
+        <!-- <router-view :key="key" class="base-viewport"/> -->
       </keep-alive>
     </transition>
   </div>

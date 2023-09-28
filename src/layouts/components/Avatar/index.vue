@@ -16,10 +16,14 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex'
+  import { mapMutations,mapActions } from 'vuex'
   export default {
     name: 'Avatar',
     methods: {
+      ...mapMutations({
+        delAllVisitedRoutes:'tabsView/delAllVisitedRoutes',
+        removeRoutes:'permission/removeRoutes'
+      }),
       ...mapActions({
         logoutAction:'user/logout'
       }),
@@ -35,6 +39,8 @@
       },
       logout() {
         this.logoutAction()
+        this.delAllVisitedRoutes()
+        this.removeRoutes()
         this.$router.push('/login')
       },
     },

@@ -13,6 +13,9 @@ import 'element-ui/lib/theme-chalk/index.css';
 // 路由权限
 import './permission'
 
+// mock
+import '../mock/index'
+
 Vue.use(ElementUI)
 
 Vue.config.productionTip = false

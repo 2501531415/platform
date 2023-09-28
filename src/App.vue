@@ -15,9 +15,6 @@ export default {
     ...mapGetters({
       token:'user/getToken'
     })
-  },
-  created(){
-    console.log(this.token)
   }
 }
 </script>

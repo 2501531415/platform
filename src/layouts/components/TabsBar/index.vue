@@ -75,7 +75,6 @@
           })
           this.tabActive = tabActive
         },
-        immediate: true,
       },
     },
     methods: {
