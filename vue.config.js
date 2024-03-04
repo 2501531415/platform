@@ -5,6 +5,12 @@ module.exports = defineConfig({
   configureWebpack:{
     plugins:[new NodePolyfillPlugin()]
   },
+  chainWebpack:config=>{
+    config.plugin('html').tap(args=>{
+      args[0].title = process.env.VUE_APP_NAME
+      return args
+    })
+  },
   transpileDependencies: true,
   devServer:{
     host:'127.0.0.1',

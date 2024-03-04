@@ -74,6 +74,7 @@
             }
           })
           this.tabActive = tabActive
+          document.title = route.name
         },
       },
     },
